@@ -5,6 +5,19 @@
 
 A simple command-line tool to download and apply metadata (such as titles, albums, artists, and album covers) to music from various online sources such as YouTube and SoundCloud. Currently, all downloads are in MP3 format and the available sources are limited to those provided by the excellent [yt-dlp](https://github.com/yt-dlp/yt-dlp) library.
 
+## Usage
+
+This tool uses the [uv](https://docs.astral.sh/uv/) Python package and project manager and can be run with the following command:
+
+```bash
+uv run download <URL1> <URL2> <URL3> ...
+```
+
+### Options
+
+> [!NOTE]
+> TODO
+
 ## Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.

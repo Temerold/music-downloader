@@ -31,24 +31,24 @@ class MetadataRetrievalError(Exception):
 
 
 def save_track_album_art(track: Track) -> Path:
-    logging.info(f"[{track.url}] Saving track album art...]")
+    logging.info("[%s] Saving track album art...]", track.url)
     temp_filepath = cast(Path, track.metadata["album_art"])
     filepath = cast(Path, track.filepath).parent / "cover.png"
     image = Image.open(temp_filepath)
     image.save(filepath)
     shutil.move(temp_filepath, filepath)
-    logging.info(f"[{track.url}] Saved track album art as {filepath}")
+    logging.info("[%s] Saved track album art as %s", track.url, filepath)
     return filepath
 
 
 def process_track(url: str, options: dict[str, Any]) -> None:
-    logging.info(f"[{url}] Processing URL...")
+    logging.info("[%s] Processing URL...", url)
     track: Track = get_track_object_from_url(url)
     source: Source = cast(Source, track.source)
 
-    logging.info(f"[{url}] Downloading and saving track...]")
+    logging.info("[%s] Downloading and saving track...]", url)
     track.filepath = source.save_track(track, options)
-    logging.info(f"[{url}] Saved file as {track.filepath}]")
+    logging.info("[%s] Saved file as %s]", url, track.filepath)
 
     track.metadata["album_art"] = save_track_album_art(track)
     apply_metadata(track, options)
@@ -81,7 +81,7 @@ def get_track_object_from_url(url: str) -> Track:
             f"Metadata retrieval failed for URL: {url}"
         ) from exc
 
-    logging.info(f"[{url}] Identified URL as {track}")
+    logging.info("[%s] Identified URL as %s", url, track)
     return track
 
 
@@ -104,10 +104,10 @@ def download(urls: tuple, album_art_adjustment: str, output_template: str) -> No
             process_track(url, options)
         except Exception as exc:
             logging.error(
-                f"Exception encountered when processing URL {url}.", exc_info=exc
+                "Exception encountered when processing URL %s.", url, exc_info=exc
             )
         else:
-            logging.info(f"[{url}] Successfully processed track")
+            logging.info("[%s] Successfully processed track", url)
 
 
 if __name__ == "__main__":

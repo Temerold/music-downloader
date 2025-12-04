@@ -1,6 +1,7 @@
 # Music Downloader
 
-> [!WARNING] Illegal usage of this tool to download copyrighted material without permission may violate copyright laws. Please ensure you have the right to download the relevant content before using this tool. The developers are not responsible for any misuse of this software.
+> [!Caution]
+> Illegal usage of this tool to download copyrighted material without permission may violate copyright laws. Please ensure you have the right to download the relevant content before using this tool. The developers are not responsible for any misuse of this software.
 
 A simple command-line tool to download and apply metadata (such as titles, albums, artists, and album covers) to music from various online sources such as YouTube and SoundCloud. Currently, all downloads are in MP3 format and the available sources are limited to those provided by the excellent [yt-dlp](https://github.com/yt-dlp/yt-dlp) library.
 

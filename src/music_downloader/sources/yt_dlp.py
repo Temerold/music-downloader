@@ -53,10 +53,11 @@ def get_metadata(track: Track) -> dict[str, Any]:
         metadata: dict[str, Any] = cast(
             dict, ydl.extract_info(track.url, download=False)
         )
+    metadata = ffmpeg_from_yt_dlp_keys(metadata)
     metadata["album_art"] = save_temp_album_art(metadata["thumbnail"])
-    metadata["date"] = format_date(metadata["upload_date"])
+    metadata["date"] = format_date(metadata["date"])
 
-    return ffmpeg_from_yt_dlp_keys(metadata)
+    return metadata
 
 
 def format_date(yyyymmdd) -> str:

@@ -91,7 +91,7 @@ def get_track_object_from_url(url: str) -> Track:
 @click.option(
     "--output_template",
     "-o",
-    default=f"{Path(os.environ["USERPROFILE"]) / "Music"}\\%(artist)s - %(title)s\\%(title)s.%(ext)s",
+    default=Path("%(artist)s - %(title)s") / Path("%(title)s.%(ext)s"),
     type=str,
 )
 def download(urls: tuple, album_art_adjustment: str, output_template: str) -> None:
